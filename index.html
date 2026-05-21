@@ -120,8 +120,8 @@
             --text-muted: #999999;
             --text-muted-dark: #c2c2c2;
             --border-light: #c7c7c7;
-            --accent-gold: #C9A96E;
-            --accent-gold-hover: #b8944f;
+            --accent-gold: #ffffff;
+            --accent-gold-hover: rgba(255,255,255,0.85);
             --cta-primary: #222222;
             --cta-hover: #404040;
             --font: 'Nunito Sans', Arial, sans-serif;
@@ -151,12 +151,12 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(255,255,255,0.97);
+            background: rgba(15,15,15,0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
             transition: box-shadow 0.3s;
         }
-        .header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+        .header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
         .header-inner {
             display: flex;
             align-items: center;
@@ -166,19 +166,19 @@
             margin: 0 auto;
             padding: 0 24px;
         }
-        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-dark); }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-light); }
         .logo-icon { width: 36px; height: 36px; }
         .logo-text { font-size: 14px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; }
-        .logo-sub { font-size: 8px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); }
+        .logo-sub { font-size: 8px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.5); }
         .nav { display: flex; gap: 32px; align-items: center; }
-        .nav a { text-decoration: none; color: var(--text-dark); font-size: 13px; font-weight: 400; letter-spacing: 0.5px; transition: opacity 0.2s; }
-        .nav a:hover { opacity: 0.6; }
+        .nav a { text-decoration: none; color: var(--text-light); font-size: 13px; font-weight: 400; letter-spacing: 0.5px; transition: opacity 0.2s; }
+        .nav a:hover { opacity: 0.65; }
         .nav .live-dot { display: inline-block; width: 6px; height: 6px; background: #ff0505; border-radius: 50%; margin-right: 4px; animation: pulse 2s infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
         .header-right { display: flex; align-items: center; gap: 16px; }
         .lang-switch { display: flex; gap: 8px; }
-        .lang-switch a { font-size: 12px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-        .lang-switch a:hover, .lang-switch a.active { color: var(--text-dark); }
+        .lang-switch a { font-size: 12px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+        .lang-switch a:hover, .lang-switch a.active { color: var(--text-light); }
         .btn-outline {
             padding: 10px 20px;
             border: 1px solid var(--text-dark);
@@ -206,24 +206,32 @@
         }
         .btn-filled:hover { background: var(--cta-hover); }
 
-        /* CRO: Gold accent CTA for high-priority actions */
+        /* Primary CTA — pill style */
         .btn-gold {
-            padding: 14px 28px;
-            border: none;
-            background: var(--accent-gold);
+            padding: 18px 44px;
+            border: 1px solid rgba(255,255,255,0.4);
+            background: rgba(15,15,15,0.55);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             color: var(--text-light);
             font-size: 14px;
             font-family: var(--font);
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            font-weight: 400;
+            letter-spacing: 0.4px;
             cursor: pointer;
             transition: all 0.3s;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
+            border-radius: 999px;
         }
-        .btn-gold:hover { background: var(--accent-gold-hover); transform: translateY(-1px); }
+        .btn-gold:hover {
+            background: rgba(15,15,15,0.8);
+            border-color: rgba(255,255,255,0.7);
+            transform: translateY(-1px);
+        }
         .btn-gold .arrow { transition: transform 0.3s; }
         .btn-gold:hover .arrow { transform: translateX(4px); }
 
@@ -241,193 +249,278 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            background: var(--bg-dark);
+            z-index: 0;
+        }
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(8,10,14,0.92) 0%,
+                    rgba(8,10,14,0.82) 35%,
+                    rgba(8,10,14,0.50) 65%,
+                    rgba(8,10,14,0.25) 100%
+                ),
+                linear-gradient(
+                    to bottom,
+                    rgba(8,10,14,0.45) 0%,
+                    rgba(8,10,14,0.15) 50%,
+                    rgba(8,10,14,0.55) 100%
+                );
         }
         .hero-content {
             position: relative;
             z-index: 2;
-            padding: 80px 24px;
+            padding: 100px 24px 64px;
             max-width: 1400px;
             margin: 0 auto;
             width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            align-items: center;
+            display: flex;
+            flex-direction: column;
+            gap: 56px;
+            min-height: calc(100vh - 64px);
+            justify-content: space-between;
         }
-        .hero-left {}
-        .hero-badge {
-            display: inline-block;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--accent-gold);
-            border: 1px solid rgba(201,169,110,0.3);
-            padding: 6px 14px;
-            margin-bottom: 24px;
-        }
+        .hero-body { width: 100%; }
+        .hero-left { max-width: 640px; }
         .hero h1 {
-            font-size: 46px;
-            font-weight: 200;
-            line-height: 1.2;
+            font-size: clamp(40px, 6.2vw, 88px);
+            font-weight: 300;
+            line-height: 1.05;
             color: var(--text-light);
-            margin-bottom: 20px;
+            margin: 0;
+            letter-spacing: -1px;
         }
-        .hero h1 strong {
-            font-weight: 400;
-            color: var(--accent-gold);
+        .hero-subtitle-primary {
+            font-size: 22px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.92);
+            margin: 0 0 14px;
+            line-height: 1.45;
+            letter-spacing: 0.1px;
         }
-        .hero-subtitle {
-            font-size: 17px;
+        .hero-subtitle-secondary {
+            font-size: 16px;
             font-weight: 300;
             color: rgba(255,255,255,0.6);
-            max-width: 480px;
-            margin-bottom: 32px;
-            line-height: 1.7;
+            margin: 0 0 40px;
+            line-height: 1.6;
+            letter-spacing: 0.2px;
         }
         .hero-cta-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
-        .hero-urgency {
-            font-size: 12px;
-            color: var(--accent-gold);
-            margin-top: 16px;
-            letter-spacing: 0.3px;
-        }
 
-        .hero-proof {
+        /* ===== HERO FINANCIAL STATS (compact, above CTA) ===== */
+        .hero-financial-stats {
             display: flex;
-            gap: 32px;
-            margin-top: 48px;
-            padding-top: 32px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            flex-wrap: wrap;
+            gap: 28px 32px;
+            margin: 0 0 32px;
+            padding: 20px 0 0;
+            border-top: 1px solid rgba(255,255,255,0.15);
         }
-        .hero-proof-item { text-align: left; }
-        .hero-proof-num { font-size: 32px; font-weight: 200; color: var(--text-light); }
-        .hero-proof-label { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 4px; letter-spacing: 0.3px; }
-
-        .hero-right {
-            position: relative;
+        .hero-fin-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
-        .hero-image-wrap {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
+        .hero-fin-label {
+            font-size: 11px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.65);
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
         }
-        .hero-image-wrap img {
-            display: block;
-            width: 100%;
-            height: 480px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-        .hero-image-label {
-            position: absolute;
-            bottom: 16px;
-            left: 16px;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(8px);
-            padding: 10px 16px;
-            border-radius: 4px;
-        }
-        .hero-image-label span {
-            display: block;
-        }
-        .hero-image-label .label-name {
-            font-size: 14px;
+        .hero-fin-num {
+            font-size: 20px;
             font-weight: 600;
             color: var(--text-light);
-        }
-        .hero-image-label .label-price {
-            font-size: 12px;
-            color: var(--accent-gold);
-            margin-top: 2px;
-            line-height: 1.7;
+            line-height: 1.1;
+            letter-spacing: -0.3px;
         }
 
-        /* ===== CRO: TRUST BAR (media mentions) ===== */
-        .trust-bar {
-            background: var(--bg-white);
-            padding: 32px 0;
-            border-bottom: 1px solid #e0e0e0;
+        /* ===== HERO STATS BAR ===== */
+        .hero-stats {
+            background: #ffffff;
+            padding: 36px 24px;
+            border-top: 1px solid rgba(0,0,0,0.06);
         }
-        .trust-bar-inner {
+        .hero-stats-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .hero-stat {
+            text-align: center;
+            padding: 0 24px;
+            border-left: 1px solid rgba(0,0,0,0.08);
+        }
+        .hero-stat:first-child { border-left: none; }
+        .hero-stat-num {
+            font-size: 52px;
+            font-weight: 700;
+            color: #111111;
+            line-height: 1;
+            margin-bottom: 10px;
+            letter-spacing: -1.2px;
+        }
+        .hero-stat-label {
+            font-size: 13px;
+            font-weight: 400;
+            color: rgba(0,0,0,0.55);
+            letter-spacing: 0.3px;
+            line-height: 1.4;
+        }
+
+        /* ===== ABOUT SECTION (sticky info + step cards) ===== */
+        .about-section {
+            padding: 120px 0;
+            background: #f7f6f3;
+            color: var(--text-dark);
+        }
+        .about-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 48px;
-            flex-wrap: wrap;
-        }
-        .trust-bar-label {
-            font-size: 11px;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-        .trust-logo {
-            height: 24px;
-            opacity: 0.5;
-            transition: opacity 0.3s;
-            filter: grayscale(100%);
-        }
-        .trust-logo:hover { opacity: 0.8; filter: grayscale(0%); }
-
-        /* ===== ABOUT SECTION (stats grid) ===== */
-        .about-section {
-            padding: 100px 0;
-            background: var(--bg-light);
         }
         .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1.1fr;
             gap: 80px;
             align-items: start;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
         }
-        .about-left .section-label {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 16px;
+        .about-info {
+            position: sticky;
+            top: 96px;
         }
-        .about-right h2 {
-            font-size: 42px;
-            font-weight: 200;
-            line-height: 1.2;
-            margin-bottom: 20px;
+        .about-eyebrow {
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(0,0,0,0.4);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 0 0 28px;
         }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1px;
-            background: var(--border-light);
-            border: 1px solid var(--border-light);
-            margin-top: 40px;
+        .about-info h2 {
+            font-size: 40px;
+            font-weight: 300;
+            line-height: 1.15;
+            color: var(--text-dark);
+            margin: 0 0 20px;
+            letter-spacing: -0.5px;
         }
-        .stat-card {
-            background: var(--bg-white);
-            padding: 36px 28px;
+        .about-info h3 {
+            font-size: 17px;
+            font-weight: 500;
+            line-height: 1.5;
+            color: rgba(0,0,0,0.7);
+            margin: 0 0 28px;
         }
-        .stat-card.has-image {
-            display: flex;
-            gap: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-        .stat-card.has-image img { width: 60%; height: 100%; object-fit: cover; }
-        .stat-card.has-image .stat-text { padding: 28px; display: flex; flex-direction: column; justify-content: center; }
-        .stat-num { font-size: 56px; font-weight: 200; color: var(--text-dark); line-height: 1; }
-        .stat-label { font-size: 13px; color: var(--text-muted); margin-top: 24px; line-height: 1.5; }
-        .about-description {
-            font-size: 15px;
-            color: #666;
+        .about-info > p {
+            font-size: 16px;
+            font-weight: 300;
             line-height: 1.8;
-            margin-top: 40px;
-            max-width: 500px;
+            color: #2a2a2a;
+            margin: 0;
+        }
+
+        /* Step cards (stacked) */
+        .about-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .step-card {
+            background: #ffffff;
+            padding: 28px;
+            display: flex;
+            gap: 22px;
+            align-items: flex-start;
+            border: 1px solid rgba(0,0,0,0.06);
+            transition: transform 0.25s ease, box-shadow 0.3s ease, border-color 0.25s ease;
+        }
+        .step-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 32px rgba(0,0,0,0.06);
+            border-color: rgba(0,0,0,0.12);
+        }
+        .step-num-box {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            background: var(--text-dark);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .step-text h4 {
+            font-size: 19px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin: 0 0 8px;
+            line-height: 1.3;
+        }
+        .step-text p {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.65;
+            color: rgba(0,0,0,0.6);
+            margin: 0;
+        }
+
+        /* About CTA (3 buttons at bottom) */
+        .about-cta {
+            margin-top: 80px;
+            padding-top: 64px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .about-cta-tagline {
+            font-size: clamp(24px, 3vw, 34px);
+            font-weight: 300;
+            line-height: 1.25;
+            color: var(--text-dark);
+            margin: 0 0 36px;
+            letter-spacing: -0.3px;
+        }
+        .about-cta-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .about-cta-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 22px 20px;
+            border: 1px solid rgba(0,0,0,0.2);
+            color: var(--text-dark);
+            background: transparent;
+            text-decoration: none;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+        .about-cta-btn:hover {
+            background: var(--text-dark);
+            color: var(--text-light);
+            border-color: var(--text-dark);
         }
 
         /* ===== PROJECTS SECTION ===== */
@@ -447,12 +540,20 @@
             padding: 0 24px;
             margin-bottom: 60px;
         }
-        .projects-header .section-label { font-size: 13px; color: var(--text-muted-dark); }
+        .projects-header-text { max-width: 720px; }
         .projects-header h2 {
             font-size: 42px;
-            font-weight: 200;
+            font-weight: 300;
             line-height: 1.2;
-            max-width: 700px;
+            margin: 0 0 20px;
+            letter-spacing: -0.3px;
+        }
+        .projects-intro {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.7);
+            margin: 0;
         }
         .projects-header .btn-outline { border-color: #555; color: var(--text-light); }
         .projects-header .btn-outline:hover { background: var(--text-light); color: var(--text-dark); }
@@ -740,7 +841,7 @@
             width: 48px;
             height: 48px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-gold), #a8874e);
+            background: linear-gradient(135deg, #3a3a3a, #1a1a1a);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1102,26 +1203,38 @@
             color: var(--text-light);
         }
 
-        /* ===== CRO: WHATSAPP FLOATING BUTTON ===== */
+        /* ===== CRO: WHATSAPP FLOATING BUTTON (premium) ===== */
         .whatsapp-float {
             position: fixed;
             bottom: 24px;
             right: 24px;
             z-index: 998;
-            width: 56px;
-            height: 56px;
-            background: #25D366;
+            width: 58px;
+            height: 58px;
+            background: #1a1a1a;
+            border: 1px solid rgba(255,255,255,0.08);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 28px;
+            color: #ffffff;
             text-decoration: none;
-            box-shadow: 0 4px 20px rgba(37,211,102,0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25), 0 2px 6px rgba(0,0,0,0.1);
+            transition: transform 0.35s ease, box-shadow 0.35s ease, color 0.3s ease, border-color 0.3s ease;
         }
-        .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 24px rgba(37,211,102,0.4); }
+        .whatsapp-float:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 42px rgba(0,0,0,0.32), 0 4px 12px rgba(0,0,0,0.15);
+            color: #25D366;
+            border-color: rgba(37,211,102,0.3);
+        }
+        .whatsapp-float svg {
+            width: 26px;
+            height: 26px;
+            fill: currentColor;
+            display: block;
+            transition: fill 0.3s ease;
+        }
 
         /* ===== CRO: BACK TO TOP ===== */
         .back-to-top {
@@ -1205,12 +1318,16 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-            .hero-content { grid-template-columns: 1fr; gap: 40px; }
-            .hero h1 { font-size: 38px; }
-            .hero-right { text-align: left; }
-            .hero-right p { margin-left: 0; }
+            .hero-content { gap: 40px; }
+            .hero-subtitle-primary { font-size: 19px; }
+            .hero-financial-stats { gap: 24px; }
+            .hero-stat-num { font-size: 56px; }
+            .hero-stat { padding: 0 16px; }
             .projects-grid { grid-template-columns: repeat(2, 1fr); }
-            .about-grid, .roi-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+            .about-grid { grid-template-columns: 1fr; gap: 48px; }
+            .about-info { position: static; }
+            .about-info h2 { font-size: 34px; }
             .testimonials-layout { grid-template-columns: 1fr; }
             .services-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
             .process-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1219,9 +1336,21 @@
         }
         @media (max-width: 768px) {
             .nav { display: none; }
-            .hero h1 { font-size: 30px; }
-            .hero-proof { flex-direction: column; gap: 20px; }
+            .hero-subtitle-primary { font-size: 17px; }
+            .hero-subtitle-secondary { font-size: 14px; }
+            .hero-financial-stats { gap: 20px 24px; }
+            .hero-fin-num { font-size: 18px; }
+            .hero-fin-label { font-size: 10px; }
+            .hero-stats { padding: 40px 16px; }
+            .hero-stats-inner { grid-template-columns: repeat(2, 1fr); gap: 32px 16px; }
+            .hero-stat { padding: 0 8px; border-left: none; }
+            .hero-stat-num { font-size: 44px; margin-bottom: 8px; }
+            .hero-stat-label { font-size: 12px; }
             .projects-grid, .projects-grid-2 { grid-template-columns: 1fr; }
+            .step-card { padding: 20px; gap: 16px; }
+            .step-num-box { width: 40px; height: 40px; font-size: 13px; }
+            .about-cta-buttons { grid-template-columns: 1fr; }
+            .about-cta { margin-top: 48px; padding-top: 40px; }
             .testimonials-header { flex-direction: column; align-items: flex-start; gap: 16px; }
             .tm-featured-text { font-size: 17px; }
             .tm-side-stack { flex-direction: column; }
@@ -1251,8 +1380,8 @@
         <div class="header-inner">
             <a href="/ge/" class="logo">
                 <svg class="logo-icon" viewBox="0 0 36 36" fill="none">
-                    <circle cx="18" cy="18" r="17" stroke="#222" stroke-width="1"/>
-                    <text x="18" y="22" text-anchor="middle" font-family="serif" font-size="14" fill="#222">C</text>
+                    <circle cx="18" cy="18" r="17" stroke="#ffffff" stroke-width="1"/>
+                    <text x="18" y="22" text-anchor="middle" font-family="serif" font-size="14" fill="#ffffff">C</text>
                 </svg>
                 <div>
                     <div class="logo-text">Central</div>
@@ -1282,96 +1411,60 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
-        <div class="hero-bg"></div>
+        <div class="hero-bg">
+            <img src="https://static.tildacdn.com/tild3964-3963-4530-b036-316635366264/_2025-04-30_18095144.png" alt="" loading="eager">
+            <div class="hero-overlay"></div>
+        </div>
         <div class="hero-content">
-            <div class="hero-left">
-                <span class="hero-badge">საქართველოს #1 სადეველოპერო ჯგუფი</span>
-                <h1>ინვესტიცია უძრავ ქონებაში — <strong>10-12% წლიური ROI</strong></h1>
-                <p class="hero-subtitle">პრემიუმ აპარტამენტები ბათუმში, ბაკურიანში, ქობულეთსა და ურეკში. სრული მართვის სერვისი, 0% განვადება და გარანტირებული იჯარის შემოსავალი.</p>
-                <div class="hero-cta-row">
-                    <a href="#contact" class="btn-gold">მიიღეთ უფასო კონსულტაცია <span class="arrow">&rarr;</span></a>
-                    <a href="/ge/projects" class="btn-outline" style="border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.8);">ნახეთ პროექტები</a>
-                </div>
-                <p class="hero-urgency">&#9679; ამჟამად 3 პროექტში მშენებლობის ფასებია ხელმისაწვდომი</p>
-                <div class="hero-proof">
-                    <div class="hero-proof-item">
-                        <div class="hero-proof-num">1000+</div>
-                        <div class="hero-proof-label">ინვესტორი</div>
+            <h1>ექსკლუზიური პროექტები საქართველოში</h1>
+            <div class="hero-body">
+                <div class="hero-left">
+                    <h2 class="hero-subtitle-primary">პრემიუმ აპარტამენტები საინვესტიციოდ და საცხოვრებლად</h2>
+                    <h2 class="hero-subtitle-secondary">CMG — თქვენი სანდო პარტნიორი უძრავი ქონების სფეროში</h2>
+                    <div class="hero-financial-stats">
+                        <div class="hero-fin-stat">
+                            <div class="hero-fin-label">ROI</div>
+                            <div class="hero-fin-num">12%</div>
+                        </div>
+                        <div class="hero-fin-stat">
+                            <div class="hero-fin-label">წლიური ფასების ზრდა</div>
+                            <div class="hero-fin-num">20%</div>
+                        </div>
+                        <div class="hero-fin-stat">
+                            <div class="hero-fin-label">ქონების გადასახადი</div>
+                            <div class="hero-fin-num">0%</div>
+                        </div>
+                        <div class="hero-fin-stat">
+                            <div class="hero-fin-label">ტურისტი წელიწადში</div>
+                            <div class="hero-fin-num">4M+</div>
+                        </div>
                     </div>
-                    <div class="hero-proof-item">
-                        <div class="hero-proof-num">10-12%</div>
-                        <div class="hero-proof-label">საშუალო ROI</div>
-                    </div>
-                    <div class="hero-proof-item">
-                        <div class="hero-proof-num">6</div>
-                        <div class="hero-proof-label">აქტიური პროექტი</div>
-                    </div>
-                    <div class="hero-proof-item">
-                        <div class="hero-proof-num">5</div>
-                        <div class="hero-proof-label">ლოკაცია</div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-right">
-                <div class="hero-image-wrap">
-                    <img src="https://static.tildacdn.one/tild3539-3039-4366-b466-653035366234/1.jpg" alt="Piazza Residence — ექსკლუზიური აპარტამენტები ძველ ბათუმში" loading="eager">
-                    <div class="hero-image-label">
-                        <span class="label-name">Piazza Residence — ძველი ბათუმი</span>
-                        <span class="label-price">$45,000-დან &bull; მზა ბინები</span>
+                    <div class="hero-cta-row">
+                        <a href="#contact" class="btn-gold">მოითხოვე კონსულტაცია</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== CRO: TRUST BAR ===== -->
-    <!-- CRO: Media mentions to build instant credibility -->
-    <section class="trust-bar">
-        <div class="trust-bar-inner">
-            <span class="trust-bar-label">ჩვენ გვენდობიან:</span>
-            <span style="font-size:14px;font-weight:600;color:#666;">Entrepreneur.com</span>
-            <span style="font-size:14px;font-weight:600;color:#666;">Forbes Georgia</span>
-            <span style="font-size:14px;font-weight:600;color:#666;">Interpressnews</span>
-            <span style="font-size:14px;font-weight:600;color:#666;">Ambebi.ge</span>
-            <span style="font-size:14px;font-weight:600;color:#666;">Tower Group</span>
-        </div>
-    </section>
-
-    <!-- ===== ABOUT / STATS ===== -->
-    <section class="about-section">
-        <div class="about-grid">
-            <div class="about-left">
-                <p class="section-label">ჩვენი საქმიანობა არ შემოიფარგლება მხოლოდ მშენებლობით</p>
+    <!-- ===== HERO STATS BAR ===== -->
+    <section class="hero-stats">
+        <div class="hero-stats-inner">
+            <div class="hero-stat">
+                <div class="hero-stat-num">15+</div>
+                <div class="hero-stat-label">წლიანი გამოცდილება</div>
             </div>
-            <div class="about-right">
-                <h2>უძრავი ქონების დეველოპმენტი, ინვესტიცია და სერვისები</h2>
+            <div class="hero-stat">
+                <div class="hero-stat-num">95%</div>
+                <div class="hero-stat-label">აკეთებს რეინვესტირებას</div>
             </div>
-        </div>
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-num">15+</div>
-                    <div class="stat-label">წელი — გამოცდილება დეველოპმენტში, მშენებლობასა და გაყიდვებში</div>
-                </div>
-                <div class="stat-card has-image">
-                    <img src="https://static.tildacdn.one/tild3438-6639-4931-a663-386132623365/DGDF_11-min.jpg" alt="CMG პროექტები საქართველოში" loading="lazy" width="400" height="300">
-                    <div class="stat-text">
-                        <div class="stat-num">5+</div>
-                        <div class="stat-label">წარმატებული პროექტი საქართველოში</div>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-num">95%</div>
-                    <div class="stat-label">კლიენტების 95% კვლავ ჩვენთან ბრუნდებიან, ახორციელებენ რეინვესტიციას</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-num">100+</div>
-                    <div class="stat-label">საერთაშორისო პარტნიორი</div>
-                </div>
+            <div class="hero-stat">
+                <div class="hero-stat-num">5</div>
+                <div class="hero-stat-label">წარმატებული პროექტი საქართველოში</div>
             </div>
-            <p class="about-description">ჩვენს კლიენტებსა და ინვესტორებს ვთავაზნობთ სრულ მომსახურებას — ვეხმარებით პროექტისა და აპარტამენტის შერჩევაში, გადახდის პროცესში, ორიგინალურ საკითხებში და ქონების გაქირავების ნაწილში.</p>
-            <div class="section-cta">
-                <a href="#projects" class="btn-gold">ნახეთ ჩვენი პროექტები &rarr;</a>
+            <div class="hero-stat">
+                <div class="hero-stat-num">100+</div>
+                <div class="hero-stat-label">საერთაშორისო პარტნიორი</div>
             </div>
         </div>
     </section>
@@ -1379,9 +1472,9 @@
     <!-- ===== PROJECTS ===== -->
     <section class="projects-section" id="projects">
         <div class="projects-header">
-            <div>
-                <p class="section-label">ჩვენი პროექტები</p>
-                <h2>კომფორტული ცხოვრებისთვის, საინვესტიციოდ ან პასიური შემოსავლისთვის</h2>
+            <div class="projects-header-text">
+                <h2>მიმდინარე საინვესტიციო და საცხოვრებელი პროექტები</h2>
+                <p class="projects-intro">შეარჩიეთ უძრავი ქონება, რომელიც თქვენს მიზნებს პასუხობს — მაღალმომგებიანი აქტივები გარანტირებული წლიური ამონაგებით ან პრემიუმ აპარტამენტები საცხოვრებლად.</p>
             </div>
             <a href="/ge/projects" class="btn-outline">ყველა პროექტი &rarr;</a>
         </div>
@@ -1452,250 +1545,53 @@
         </div>
     </section>
 
-    <!-- ===== ROI / INVESTMENT ===== -->
-    <section class="roi-section">
-        <div class="roi-grid">
-            <div class="roi-left">
-                <h2>ინვესტიციის შედეგები — ROI და ფასების ზრდა</h2>
-                <p>საქართველოს უძრავი ქონების ბაზარი სტაბილურ ზრდას აჩვენებს. CMG-ს ინვესტორები იღებენ 10-12% წლიურ ამონაგებს იჯარის შემოსავლითა და ქონების ღირებულების ზრდით.</p>
-                <a href="/ge/why-georgia" class="btn-gold">რატომ საქართველო? <span class="arrow">&rarr;</span></a>
-            </div>
-            <div class="roi-right">
-                <div class="roi-stats">
-                    <div class="roi-stat">
-                        <div class="roi-stat-num">20%</div>
-                        <div class="roi-stat-label">წლიური ფასების ზრდა</div>
-                    </div>
-                    <div class="roi-stat">
-                        <div class="roi-stat-num">10-12%</div>
-                        <div class="roi-stat-label">საშუალო ROI</div>
-                    </div>
-                    <div class="roi-stat">
-                        <div class="roi-stat-num">0%</div>
-                        <div class="roi-stat-label">ქონების გადასახადი</div>
-                    </div>
-                    <div class="roi-stat">
-                        <div class="roi-stat-num">4M+</div>
-                        <div class="roi-stat-label">ტურისტი წელიწადში</div>
+    <!-- ===== ABOUT (sticky left + cards right) ===== -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-grid">
+                <div class="about-info">
+                    <h2>თქვენი საიმედო მეგზური უძრავი ქონების ბაზარზე</h2>
+                    <h3>გამოცდილება, რომელიც ქმნის მაღალ სტანდარტს</h3>
+                    <p>ჩვენი მისიაა, მშენებლობა აქტივად და კომფორტულ სივრცედ ვაქციოთ. CMG-ს გუნდი სრულად მართავს პროექტებს: შერჩევიდან და იურიდიული მხარდაჭერიდან, გაქირავების სერვისამდე. ეს არის მიდგომა, რომლის წყალობითაც ჩვენი ინვესტორების 95% კვლავ ჩვენთან ბრუნდება.</p>
+                </div>
+                <div class="about-steps">
+                <div class="step-card">
+                    <div class="step-num-box">01</div>
+                    <div class="step-text">
+                        <h4>იდეალური ქონების შერჩევა</h4>
+                        <p>კონსულტაციის შედეგად ჩვენი ექსპერტები მოამზადებენ პერსონალიზებულ შეთავაზებას, რომელიც სრულად შეესაბამება თქვენს მოთხოვნებს.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== HOW IT WORKS ===== -->
-    <section class="process-section">
-        <h2>შეძენის პროცესი</h2>
-        <div class="process-grid">
-            <div class="process-step">
-                <div class="step-num">01</div>
-                <h3 class="step-title">ქონების შერჩევა</h3>
-                <p class="step-desc">თქვენი მიზნების მიხედვით შევარჩევთ ოპტიმალურ პროექტსა და აპარტამენტს</p>
-            </div>
-            <div class="process-step">
-                <div class="step-num">02</div>
-                <h3 class="step-title">იურიდიული შემოწმება</h3>
-                <p class="step-desc">სრული due diligence — დოკუმენტაციის შემოწმება და იურიდიული თანხლება</p>
-            </div>
-            <div class="process-step">
-                <div class="step-num">03</div>
-                <h3 class="step-title">დოკუმენტაცია და გადახდა</h3>
-                <p class="step-desc">ხელშეკრულების გაფორმება და მოქნილი გადახდის პირობები</p>
-            </div>
-            <div class="process-step">
-                <div class="step-num">04</div>
-                <h3 class="step-title">შემოსავლის მიღება</h3>
-                <p class="step-desc">ქონების მართვა და იჯარის შემოსავლის მიღების დაწყება</p>
-            </div>
-        </div>
-        <div class="section-cta">
-            <a href="#contact" class="btn-gold">დაიწყეთ პირველი ნაბიჯი &rarr;</a>
-            <p class="section-cta-muted">უფასო კონსულტაცია 30 წუთში</p>
-        </div>
-    </section>
-
-    <!-- ===== SERVICES ===== -->
-    <section class="services-section">
-        <h2>პრემიუმ მომსახურება</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">&#9670;</div>
-                <h3>ინვესტიციის მართვა</h3>
-                <p>პროფესიონალური მართვა — იჯარის ადმინისტრირება, მოიჯარეთა შერჩევა და ფინანსური ანგარიშგება.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">&#9670;</div>
-                <h3>იურიდიული მხარდაჭერა</h3>
-                <p>სრული იურიდიული თანხლება — დოკუმენტაცია, ნოტარიული მომსახურება და ქონების რეგისტრაცია.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">&#9670;</div>
-                <h3>გადახდის გეგმები</h3>
-                <p>მოქნილი გადახდის პირობები — 0% განვადება მშენებლობის პერიოდში და საბანკო პარტნიორობა.</p>
-            </div>
-        </div>
-        <div class="section-cta">
-            <a href="#contact" class="btn-gold">მოითხოვეთ უფასო კონსულტაცია &rarr;</a>
-            <p class="section-cta-muted-light">ვალდებულებების გარეშე</p>
-        </div>
-    </section>
-
-    <!-- ===== CRO: TESTIMONIALS ===== -->
-    <section class="testimonials-section">
-        <div class="testimonials-header">
-            <div class="testimonials-header-left">
-                <div class="section-label">ნდობა &amp; შედეგები</div>
-                <h2>რეალური ინვესტორები,<br><strong>რეალური შედეგები</strong></h2>
-            </div>
-            <div class="testimonials-aggregate">
-                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                4.9/5 &mdash; 120+ შეფასება
-            </div>
-        </div>
-        <div class="testimonials-layout">
-            <div class="tm-featured">
-                <div class="tm-featured-bg" style="background-image:url('https://static.tildacdn.one/tild3332-3738-4432-a232-613766336461/cam_01_Post_copy_v12.png');"></div>
-                <div class="tm-featured-content">
-                    <div class="tm-featured-tag">&#9733; საუკეთესო ინვესტიცია 2025</div>
-                    <p class="tm-featured-text">&ldquo;CMG-ს გუნდმა მთლიანი პროცესი უმარტივეს გამოცდილებად აქცია. ბინა ქობულეთში შევიძინე და პირველივე სეზონიდან შემოსავალი მივიღე. წელიწადში 11% ამონაგები — ეს რეალობაა.&rdquo;</p>
-                    <div class="tm-featured-footer">
-                        <div class="tm-author-row">
-                            <div class="tm-avatar">დ</div>
-                            <div class="tm-author-info">
-                                <div class="tm-author-name">დავით მ.</div>
-                                <div class="tm-author-detail">ინვესტორი &bull; Kvirike Residence, ქობულეთი</div>
-                            </div>
-                        </div>
-                        <div class="tm-result-badge">
-                            <div class="tm-result-num">11%</div>
-                            <div class="tm-result-label">წლიური ROI</div>
-                        </div>
+                <div class="step-card">
+                    <div class="step-num-box">02</div>
+                    <div class="step-text">
+                        <h4>იურიდიული შემოწმება</h4>
+                        <p>ვამოწმებთ უძრავი ქონების იურიდიულ შესაბამისობას და უზრუნველვყოფთ ფინანსური პირობების გამჭვირვალობას.</p>
                     </div>
                 </div>
-            </div>
-            <div class="tm-side-stack">
-                <div class="tm-card">
-                    <div>
-                        <div class="tm-card-top">
-                            <div class="tm-avatar">ა</div>
-                            <div class="tm-author-info">
-                                <div class="tm-author-name">ანა კ.</div>
-                                <div class="tm-author-detail">მყიდველი &bull; Piazza Residence</div>
-                                <div class="tm-card-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                            </div>
-                        </div>
-                        <p class="tm-card-text">&ldquo;პროფესიონალიზმისა და გამჭვირვალობის მაღალი სტანდარტი. ძველ ბათუმში ბინის ყიდვა ჩემთვის საუკეთესო გადაწყვეტილება აღმოჩნდა.&rdquo;</p>
-                    </div>
-                    <div class="tm-card-result">
-                        <div class="tm-card-result-icon">&#8593;</div>
-                        <div class="tm-card-result-text">ქონების ღირებულება გაიზარდა <span>+18%</span> 1 წელში</div>
+                <div class="step-card">
+                    <div class="step-num-box">03</div>
+                    <div class="step-text">
+                        <h4>დოკუმენტაცია და გადახდა</h4>
+                        <p>CMG გუნდი მოამზადებს ყველა დოკუმენტს და შეგირჩევთ გადახდის კომფორტულ მეთოდს — თქვენ მხოლოდ პასპორტი დაგჭირდებათ.</p>
                     </div>
                 </div>
-                <div class="tm-card">
-                    <div>
-                        <div class="tm-card-top">
-                            <div class="tm-avatar">გ</div>
-                            <div class="tm-author-info">
-                                <div class="tm-author-name">გიორგი ლ.</div>
-                                <div class="tm-author-detail">ინვესტორი &bull; Mziani Valley</div>
-                                <div class="tm-card-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                            </div>
-                        </div>
-                        <p class="tm-card-text">&ldquo;მეორე ინვესტიციაც CMG-სთან განვახორციელე. ბაკურიანის პროექტი იდეალური შესაძლებლობაა 4-სეზონიანი შემოსავლისთვის.&rdquo;</p>
-                    </div>
-                    <div class="tm-card-result">
-                        <div class="tm-card-result-icon">&#8593;</div>
-                        <div class="tm-card-result-text">სეზონური დატვირთვა <span>92%</span> — ზამთარ/ზაფხული</div>
+                <div class="step-card">
+                    <div class="step-num-box">04</div>
+                    <div class="step-text">
+                        <h4>შემოსავლის გენერაცია</h4>
+                        <p>გეხმარებით ინვესტიციის დაგეგმვაში, განხორციელებასა და ქონების შემდგომ მოვლა-პატრონობაში.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="section-cta" style="max-width:1200px;margin:48px auto 0;padding:0 24px;">
-            <a href="#contact" class="btn-gold">გახდით ინვესტორი &rarr;</a>
-            <p class="section-cta-muted-light">შეუერთდით 1000+ კმაყოფილ ინვესტორს</p>
-        </div>
-    </section>
-
-    <!-- ===== WHY GEORGIA ===== -->
-    <section class="why-section">
-        <div class="container">
-            <h2 style="margin-bottom:64px;">რატომ საქართველო — საუკეთესო ლოკაციები</h2>
-        </div>
-        <div class="why-grid">
-            <div class="why-card">
-                <div class="why-num">10-20%</div>
-                <h3>მზარდი უძრავი ქონების ბაზარი</h3>
-                <p>ფასების სტაბილური ზრდა წელიწადში 10-20%, განსაკუთრებით ტურისტულ ლოკაციებზე.</p>
-            </div>
-            <div class="why-card">
-                <div class="why-num">0%</div>
-                <h3>ლოიალური საგადასახადო სისტემა</h3>
-                <p>ქონების გადასახადი 0%. უცხოელი ინვესტორებისთვის იგივე პირობები, რაც ადგილობრივებისთვის.</p>
-            </div>
-            <div class="why-card">
-                <div class="why-num">100%</div>
-                <h3>მარტივი შესყიდვის პროცესი</h3>
-                <p>უცხოელებს შეუძლიათ ქონების შეძენა სპეციალური ნებართვის გარეშე. პროცესი სწრაფი და გამჭვირვალეა.</p>
-            </div>
-        </div>
-        <div class="section-cta" style="margin-top:48px;">
-            <a href="/ge/why-georgia" class="btn-gold">გაიგეთ მეტი საქართველოზე &rarr;</a>
-        </div>
-    </section>
-
-    <!-- ===== CRO: FAQ ===== -->
-    <section class="faq-section" id="faq">
-        <h2>ხშირად დასმული კითხვები</h2>
-        <div class="faq-list">
-            <div class="faq-item">
-                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-                    <span>შეუძლია თუ არა უცხოელს საქართველოში უძრავი ქონების შეძენა?</span>
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>დიახ, უცხო ქვეყნის მოქალაქეებს შეუძლიათ საქართველოში უძრავი ქონების თავისუფლად შეძენა სპეციალური ნებართვის გარეშე. პროცესი მარტივი და სწრაფია — საჭიროა მხოლოდ პასპორტი.</p>
                 </div>
             </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-                    <span>რა არის საშუალო ROI საქართველოს უძრავ ქონებაში?</span>
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>საშუალო ROI შეადგენს 10-12% წლიურად, რაც მოიცავს იჯარის შემოსავალსა და ქონების ღირებულების ზრდას. ტურისტულ ლოკაციებზე (ბათუმი, ბაკურიანი) ეს მაჩვენებელი შეიძლება უფრო მაღალიც იყოს.</p>
+            <div class="about-cta">
+                <p class="about-cta-tagline">გააკეთეთ სანდო ინვესტიცია თქვენს მომავალში</p>
+                <div class="about-cta-buttons">
+                    <a href="#projects" class="about-cta-btn">პროექტები</a>
+                    <a href="/ge/why-georgia" class="about-cta-btn">რატომ საქართველო?</a>
                 </div>
             </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-                    <span>როგორ მიმდინარეობს ბინის შეძენის პროცესი?</span>
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>პროცესი 4 ეტაპისგან შედგება: 1) ქონების შერჩევა თქვენი მიზნების მიხედვით, 2) იურიდიული შემოწმება (due diligence), 3) დოკუმენტაცია და გადახდა, 4) შემოსავლის მიღების დაწყება. CMG სრულ თანხლებას უზრუნველყოფს.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-                    <span>არის თუ არა შესაძლებელი განვადებით ყიდვა?</span>
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>დიახ, CMG სთავაზობს მყიდველებს მოქნილ გადახდის გეგმებს. მშენებარე პროექტებში შესაძლებელია 0% განვადება ჩაბარებამდე. დეტალებისთვის დაგვიკავშირდით.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
-                    <span>როგორ ხდება ქონების მართვა შეძენის შემდეგ?</span>
-                    <span class="faq-toggle">+</span>
-                </div>
-                <div class="faq-answer">
-                    <p>CMG სთავაზობს სრული მართვის სერვისს — მოიჯარეთა მოძიება, ჩასახლება, ტექნიკური მომსახურება და ფინანსური ანგარიშგება. თქვენ მხოლოდ შემოსავალს იღებთ.</p>
-                </div>
-            </div>
-        </div>
-        <div class="section-cta" style="margin-top:40px;">
-            <p style="font-size:15px;color:#555;margin-bottom:16px;">კიდევ გაქვთ კითხვები?</p>
-            <a href="#contact" class="btn-gold">ესაუბრეთ კონსულტანტს &rarr;</a>
         </div>
     </section>
 
@@ -1703,8 +1599,8 @@
     <section class="contact-section" id="contact">
         <div class="contact-grid">
             <div class="contact-left">
-                <h2>მიიღეთ უფასო საინვესტიციო კონსულტაცია</h2>
-                <p>შეავსეთ ფორმა და ჩვენი კონსულტანტი დაგიკავშირდებათ 30 წუთში. კონსულტაცია უფასოა და ვალდებულებების გარეშეა.</p>
+                <h2>მიიღეთ უფასო კონსულტაცია</h2>
+                <p>შეავსეთ ფორმა და ჩვენი მენეჯერი დაგიკავშირდებათ.</p>
                 <div class="contact-info-item">
                     <span>&#9742;</span>
                     <a href="tel:+995422222222" style="color:var(--text-muted-dark);text-decoration:none;">0422 22 22 22</a>
@@ -1802,7 +1698,9 @@
 
     <!-- ===== CRO: WHATSAPP FLOAT ===== -->
     <a href="https://wa.me/995422222222" class="whatsapp-float" aria-label="WhatsApp" target="_blank" rel="noopener">
-        &#128172;
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
     </a>
 
     <!-- ===== CRO: BACK TO TOP ===== -->
