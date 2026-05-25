@@ -2260,20 +2260,274 @@
             border-color: rgba(255,255,255,0.7);
         }
 
-        /* Amenities */
-        .amenities-section {
+        /* Location */
+        .location-section {
             background: var(--bg-white);
             padding: 100px 24px;
         }
-        .amenities-inner {
+        .location-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 64px;
+            align-items: center;
+        }
+        .location-text h2 {
+            font-size: clamp(26px, 3vw, 36px);
+            font-weight: 300;
+            line-height: 1.2;
+            color: var(--text-dark);
+            margin: 0 0 20px;
+            letter-spacing: -0.3px;
+        }
+        .location-text > p {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.8;
+            color: #2a2a2a;
+            margin: 0 0 28px;
+        }
+        .location-facts {
+            list-style: none;
+            margin: 0 0 28px;
+            padding: 0;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+        .location-facts li {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            font-size: 14px;
+        }
+        .location-facts li span {
+            color: rgba(0,0,0,0.55);
+            letter-spacing: 0.3px;
+        }
+        .location-facts li strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        .location-link {
+            display: inline-block;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 1px solid currentColor;
+            padding-bottom: 2px;
+            transition: opacity 0.25s ease;
+        }
+        .location-link:hover { opacity: 0.6; }
+        .location-map {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        .location-map img {
+            display: block;
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            filter: grayscale(60%) contrast(1.05);
+        }
+        .location-pin {
+            position: absolute;
+            top: 38%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .location-pin-dot {
+            width: 14px;
+            height: 14px;
+            background: var(--text-dark);
+            border-radius: 50%;
+            box-shadow: 0 0 0 6px rgba(34,34,34,0.18), 0 0 0 14px rgba(34,34,34,0.08);
+            animation: pinPulse 2s infinite ease-in-out;
+        }
+        @keyframes pinPulse {
+            0%, 100% { box-shadow: 0 0 0 6px rgba(34,34,34,0.18), 0 0 0 14px rgba(34,34,34,0.08); }
+            50% { box-shadow: 0 0 0 8px rgba(34,34,34,0.22), 0 0 0 18px rgba(34,34,34,0.05); }
+        }
+        .location-pin-label {
+            background: var(--text-dark);
+            color: var(--text-light);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            padding: 5px 10px;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+
+        /* Infrastructure / Amenities */
+        .infra-section {
+            background: #161616;
+            padding: 100px 24px;
+            color: var(--text-light);
+        }
+        .infra-inner {
             max-width: 1200px;
             margin: 0 auto;
         }
-        .amenities-header {
-            max-width: 720px;
+        .infra-header {
+            max-width: 760px;
             margin: 0 0 48px;
         }
-        .amenities-header h2 {
+        .infra-header .section-eyebrow { color: rgba(255,255,255,0.5); }
+        .infra-header h2 {
+            font-size: clamp(28px, 3.6vw, 44px);
+            font-weight: 300;
+            line-height: 1.2;
+            color: var(--text-light);
+            margin: 0;
+            letter-spacing: -0.3px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 28px;
+        }
+        .infra-body {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 48px;
+            align-items: stretch;
+        }
+        .infra-list {
+            display: flex;
+            flex-direction: column;
+        }
+        .infra-subhead {
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.7);
+            margin: 0 0 20px;
+        }
+        .infra-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            flex: 1;
+        }
+        .infra-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 18px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            font-size: 13px;
+            line-height: 1.4;
+            color: rgba(255,255,255,0.9);
+            transition: background 0.25s ease, border-color 0.25s ease;
+        }
+        .infra-item:hover {
+            background: rgba(255,255,255,0.07);
+            border-color: rgba(255,255,255,0.18);
+        }
+        .infra-icon {
+            flex-shrink: 0;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.85);
+        }
+        .infra-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+        .infra-image {
+            position: relative;
+            overflow: hidden;
+        }
+        .infra-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            min-height: 420px;
+        }
+
+        /* Why Kobuleti */
+        .why-section {
+            background: var(--bg-white);
+            padding: 100px 24px;
+        }
+        .why-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .why-header {
+            max-width: 720px;
+            margin: 0 0 56px;
+        }
+        .why-header h2 {
+            font-size: clamp(28px, 3.4vw, 40px);
+            font-weight: 300;
+            line-height: 1.2;
+            color: var(--text-dark);
+            margin: 0 0 18px;
+            letter-spacing: -0.3px;
+        }
+        .why-header > p {
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.7;
+            color: rgba(0,0,0,0.62);
+            margin: 0;
+        }
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .why-card {
+            padding: 28px 28px 28px 0;
+            border-top: 1px solid rgba(0,0,0,0.12);
+            transition: border-color 0.25s ease;
+        }
+        .why-card:hover { border-top-color: var(--text-dark); }
+        .why-num {
+            font-size: 13px;
+            font-weight: 600;
+            color: rgba(0,0,0,0.4);
+            letter-spacing: 1.2px;
+            margin-bottom: 16px;
+        }
+        .why-card h3 {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin: 0 0 12px;
+            line-height: 1.3;
+        }
+        .why-card p {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.65;
+            color: rgba(0,0,0,0.62);
+            margin: 0;
+        }
+
+        /* Related Projects */
+        .related-section {
+            background: #f7f6f3;
+            padding: 100px 24px;
+        }
+        .related-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .related-header {
+            margin: 0 0 48px;
+        }
+        .related-header h2 {
             font-size: clamp(26px, 3vw, 36px);
             font-weight: 300;
             line-height: 1.2;
@@ -2281,27 +2535,55 @@
             margin: 0;
             letter-spacing: -0.3px;
         }
-        .amenities-grid {
+        .related-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
         }
-        .amenity-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 22px 4px;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-        }
-        .amenity-icon {
-            color: rgba(0,0,0,0.35);
-            font-size: 11px;
-            flex-shrink: 0;
-        }
-        .amenity-text {
-            font-size: 15px;
+        .related-card {
+            display: block;
+            text-decoration: none;
             color: var(--text-dark);
-            font-weight: 400;
+            background: var(--bg-white);
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+        }
+        .related-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 36px rgba(0,0,0,0.07);
+        }
+        .related-img {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+        .related-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .related-card:hover .related-img img { transform: scale(1.05); }
+        .related-body { padding: 18px 20px 22px; }
+        .related-body h3 {
+            font-size: 16px;
+            font-weight: 500;
+            margin: 0 0 6px;
+            letter-spacing: 0.3px;
+        }
+        .related-body p {
+            font-size: 13px;
+            font-weight: 300;
+            line-height: 1.5;
+            color: rgba(0,0,0,0.6);
+            margin: 0 0 12px;
+            min-height: 38px;
+        }
+        .related-loc {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(0,0,0,0.5);
         }
 
         /* Payment Terms */
@@ -2395,6 +2677,11 @@
             .apartments-grid { grid-template-columns: 1fr; }
             .payment-inner { grid-template-columns: 1fr; gap: 40px; }
             .payment-num { font-size: 44px; min-width: 110px; }
+            .location-inner { grid-template-columns: 1fr; gap: 40px; }
+            .infra-body { grid-template-columns: 1fr; gap: 32px; }
+            .infra-image img { min-height: 320px; }
+            .why-grid { grid-template-columns: repeat(2, 1fr); }
+            .related-grid { grid-template-columns: repeat(2, 1fr); }
             .contact-grid { grid-template-columns: 1fr; gap: 40px; }
             .about-grid { grid-template-columns: 1fr; gap: 48px; }
             .about-info { position: static; }
@@ -2434,8 +2721,15 @@
             .project-stats-inner { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
             .project-stat { border-left: none !important; padding-left: 0 !important; }
             .project-stat-value { font-size: 18px; }
-            .project-overview, .apartments-section, .amenities-section, .payment-section { padding: 64px 20px; }
-            .amenities-grid { grid-template-columns: 1fr; }
+            .project-overview, .apartments-section, .infra-section, .payment-section, .location-section, .why-section, .related-section { padding: 64px 20px; }
+            .infra-body { grid-template-columns: 1fr; gap: 32px; }
+            .infra-image img { min-height: 280px; }
+            .infra-grid { grid-template-columns: 1fr; }
+            .location-inner { grid-template-columns: 1fr; gap: 40px; }
+            .location-map img { height: 320px; }
+            .why-grid { grid-template-columns: 1fr; gap: 0; }
+            .why-card { padding: 22px 0; }
+            .related-grid { grid-template-columns: repeat(2, 1fr); }
             .apartment-visual { padding: 28px 24px; min-height: 150px; }
             .apartment-body { padding: 26px 24px; }
             .apartment-gallery { padding: 64px 20px; }
@@ -2682,53 +2976,139 @@
         </div>
     </section>
 
-    <!-- ===== AMENITIES ===== -->
-    <section class="amenities-section">
-        <div class="amenities-inner">
-            <div class="amenities-header">
-                <p class="section-eyebrow">სერვისები კომპლექსში</p>
-                <h2>ყველაფერი, რაც სრულფასოვან ცხოვრებას სჭირდება</h2>
+    <!-- ===== LOCATION ===== -->
+    <section class="location-section">
+        <div class="location-inner">
+            <div class="location-text">
+                <p class="section-eyebrow">ლოკაცია</p>
+                <h2>სრულფასოვანი ცხოვრება. გონივრული ინვესტიცია.</h2>
+                <p>Kvirike Residence მდებარეობს დასავლეთ საქართველოს გამორჩეულ ლოკაციაზე — აჭარაში, ქობულეთში, ბათუმიდან 20 წუთის სავალ გზაზე. რეგიონის ნაზი სუბტროპიკული კლიმატი და მწვანე ლანდშაფტი წყნარი დასვენებისა და ჯანმრთელი ცხოვრების იდეალურ ფონს ქმნის.</p>
+                <ul class="location-facts">
+                    <li><span>ლოკაცია</span><strong>ქობულეთი, აჭარა</strong></li>
+                    <li><span>ბათუმამდე</span><strong>20 წუთის სავალი</strong></li>
+                    <li><span>ზღვამდე</span><strong>უმოკლესი მანძილი</strong></li>
+                    <li><span>აეროპორტამდე</span><strong>~30 წუთი</strong></li>
+                </ul>
+                <a href="https://maps.google.com/?q=Kvirike+Residence+Kobuleti" target="_blank" rel="noopener" class="location-link">რუკაზე ნახვა &rarr;</a>
             </div>
-            <div class="amenities-grid">
-                <div class="amenity-item">
-                    <span class="amenity-icon">◆</span>
-                    <span class="amenity-text">რესტორნები და კაფეები</span>
+            <div class="location-map">
+                <img src="https://static.tildacdn.one/tild3635-3763-4665-b438-343732326637/cam_10-min.png" alt="Kvirike Residence — ლოკაცია ქობულეთში" loading="lazy">
+                <div class="location-pin">
+                    <span class="location-pin-dot"></span>
+                    <span class="location-pin-label">Kvirike Residence</span>
                 </div>
-                <div class="amenity-item">
-                    <span class="amenity-icon">◆</span>
-                    <span class="amenity-text">ვენახი და მარანი</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== INFRASTRUCTURE / AMENITIES ===== -->
+    <section class="infra-section">
+        <div class="infra-inner">
+            <div class="infra-header">
+                <p class="section-eyebrow">ინფრასტრუქტურა</p>
+                <h2>ყველაფერი, რაც სრულფასოვან ცხოვრებას და დასვენებას სჭირდება</h2>
+            </div>
+            <div class="infra-body">
+                <div class="infra-list">
+                    <p class="infra-subhead">კომპლექსის ტერიტორიაზე:</p>
+                    <div class="infra-grid">
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 8h12v4a4 4 0 01-4 4H8a4 4 0 01-4-4V8z"/><path d="M16 9h2a2 2 0 110 4h-2"/><path d="M6 4v2M10 4v2M14 4v2"/></svg>
+                            </span>
+                            <span>რესტორნები და კაფეები</span>
+                        </div>
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3h8l-1 8a3 3 0 11-6 0L8 3z"/><line x1="12" y1="14" x2="12" y2="20"/><line x1="9" y1="20" x2="15" y2="20"/></svg>
+                            </span>
+                            <span>ვენახი და მარანი</span>
+                        </div>
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 16c2-1 3 1 5 1s3-2 5-2 3 2 5 2 3-1 5-1"/><path d="M2 20c2-1 3 1 5 1s3-2 5-2 3 2 5 2 3-1 5-1"/><circle cx="14" cy="7" r="2"/><path d="M14 9v6"/></svg>
+                            </span>
+                            <span>დახურული &amp; ღია აუზი</span>
+                        </div>
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="12" rx="1"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="17" x2="12" y2="20"/></svg>
+                            </span>
+                            <span>საკონფერენციო დარბაზები</span>
+                        </div>
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4c-2 4-4 5-4 9a4 4 0 008 0c0-4-2-5-4-9z"/></svg>
+                            </span>
+                            <span>სპა</span>
+                        </div>
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="6" x2="6" y2="18"/><line x1="18" y1="6" x2="18" y2="18"/><line x1="3" y1="9" x2="3" y2="15"/><line x1="21" y1="9" x2="21" y2="15"/><line x1="6" y1="12" x2="18" y2="12"/></svg>
+                            </span>
+                            <span>ფიტნეს ცენტრი</span>
+                        </div>
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8l7-4 7 4v8l-7 4-7-4V8z"/><path d="M12 12v8M5 8l7 4 7-4"/></svg>
+                            </span>
+                            <span>საზეიმო დარბაზები</span>
+                        </div>
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 11l2-6h14l2 6v7a1 1 0 01-1 1h-2a1 1 0 01-1-1v-2H7v2a1 1 0 01-1 1H4a1 1 0 01-1-1v-7z"/><circle cx="7" cy="14" r="1"/><circle cx="17" cy="14" r="1"/></svg>
+                            </span>
+                            <span>ელექტრომობილებით ტრანსფერი ზღვამდე</span>
+                        </div>
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V8h7l2 3h7v9H4z"/><path d="M8 14h8"/></svg>
+                            </span>
+                            <span>დასასვენებელი სივრცეები</span>
+                        </div>
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/><path d="M3 5h3l2 11h11l2-7H7"/></svg>
+                            </span>
+                            <span>კომერციული ზონები</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="amenity-item">
-                    <span class="amenity-icon">◆</span>
-                    <span class="amenity-text">დახურული და ღია აუზი</span>
+                <div class="infra-image">
+                    <img src="https://static.tildacdn.one/tild3635-3763-4665-b438-343732326637/cam_10-min.png" alt="Kvirike Residence — საერთო ხედი" loading="lazy">
                 </div>
-                <div class="amenity-item">
-                    <span class="amenity-icon">◆</span>
-                    <span class="amenity-text">საკონფერენციო დარბაზები</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHY KOBULETI ===== -->
+    <section class="why-section">
+        <div class="why-inner">
+            <div class="why-header">
+                <p class="section-eyebrow">რატომ ქობულეთი?</p>
+                <h2>საქართველოს გამორჩეული სანაპირო</h2>
+                <p>ქობულეთი — სწრაფად განვითარებადი საკურორტო ქალაქი ბათუმთან სიახლოვეს. იდეალური ბალანსი წყნარ ცხოვრებასა და მზარდი ბაზრის შესაძლებლობებს შორის.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="why-num">01</div>
+                    <h3>განვითარებული ინფრასტრუქტურა</h3>
+                    <p>აქტიური სასტუმრო-კურორტული ბიზნესი, ახალი გზები, ბათუმის სიახლოვე და სრულფასოვანი სერვისები.</p>
                 </div>
-                <div class="amenity-item">
-                    <span class="amenity-icon">◆</span>
-                    <span class="amenity-text">სპა ცენტრი</span>
+                <div class="why-card">
+                    <div class="why-num">02</div>
+                    <h3>წლიური შემოსავალი</h3>
+                    <p>ფასების სტაბილური ზრდა და მაღალი იჯარის სარგებლიანობა — როგორც სეზონური, ისე გრძელვადიანი იჯარისთვის.</p>
                 </div>
-                <div class="amenity-item">
-                    <span class="amenity-icon">◆</span>
-                    <span class="amenity-text">ფიტნეს ცენტრი</span>
+                <div class="why-card">
+                    <div class="why-num">03</div>
+                    <h3>ველნეს-ტურიზმი</h3>
+                    <p>აჭარის სუბტროპიკული კლიმატი, მინერალური წყლები და ეკოლოგიური სუფთა გარემო — მთელი წლის ტურისტული მოთხოვნა.</p>
                 </div>
-                <div class="amenity-item">
-                    <span class="amenity-icon">◆</span>
-                    <span class="amenity-text">საზეიმო დარბაზები</span>
-                </div>
-                <div class="amenity-item">
-                    <span class="amenity-icon">◆</span>
-                    <span class="amenity-text">ელ-მობილით ტრანსფერი ზღვამდე</span>
-                </div>
-                <div class="amenity-item">
-                    <span class="amenity-icon">◆</span>
-                    <span class="amenity-text">დასასვენებელი სივრცეები</span>
-                </div>
-                <div class="amenity-item">
-                    <span class="amenity-icon">◆</span>
-                    <span class="amenity-text">კომერციული ზონები</span>
+                <div class="why-card">
+                    <div class="why-num">04</div>
+                    <h3>სტრატეგიული ინვესტიცია</h3>
+                    <p>0% ქონების გადასახადი იჯარაზე, გამარტივებული შესყიდვის პროცესი უცხო ქვეყნის მოქალაქეებისთვის, $-ში ფიქსირებული ფასები.</p>
                 </div>
             </div>
         </div>
@@ -2755,6 +3135,58 @@
                     <div class="payment-num">0<span class="payment-unit">%</span></div>
                     <div class="payment-label">საპროცენტო განაკვეთი</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RELATED PROJECTS ===== -->
+    <section class="related-section">
+        <div class="related-inner">
+            <div class="related-header">
+                <p class="section-eyebrow">სხვა პროექტები</p>
+                <h2>აღმოაჩინეთ იდეალური პროექტი თქვენთვის</h2>
+            </div>
+            <div class="related-grid">
+                <a href="../piazza-residence/" class="related-card">
+                    <div class="related-img">
+                        <img src="https://static.tildacdn.one/tild3539-3039-4366-b466-653035366234/1.jpg" alt="Piazza Residence" loading="lazy">
+                    </div>
+                    <div class="related-body">
+                        <h3>Piazza Residence</h3>
+                        <p>ექსკლუზიური აპარტამენტები ძველი ბათუმის გულში</p>
+                        <span class="related-loc">ძველი ბათუმი</span>
+                    </div>
+                </a>
+                <a href="../panorama/" class="related-card">
+                    <div class="related-img">
+                        <img src="https://static.tildacdn.one/tild3433-3665-4263-a230-306339306661/027_Game-min.png" alt="Panorama Batumi" loading="lazy">
+                    </div>
+                    <div class="related-body">
+                        <h3>Panorama Batumi</h3>
+                        <p>მშენებარე აპარტამენტები პანორამული ზღვის ხედით</p>
+                        <span class="related-loc">ბათუმი</span>
+                    </div>
+                </a>
+                <a href="../mziani-valley/" class="related-card">
+                    <div class="related-img">
+                        <img src="https://static.tildacdn.one/tild3837-3330-4132-b431-393262313664/01_00000-min.jpg" alt="Mziani Valley" loading="lazy">
+                    </div>
+                    <div class="related-body">
+                        <h3>Mziani Valley</h3>
+                        <p>პრემიუმ აპარტამენტები სათხილამურო კურორტზე</p>
+                        <span class="related-loc">ბაკურიანი</span>
+                    </div>
+                </a>
+                <a href="../ureki-sands-resort/" class="related-card">
+                    <div class="related-img">
+                        <img src="https://static.tildacdn.one/tild6535-6637-4631-a165-666263356361/2_7.png" alt="Ureki Sands Resort" loading="lazy">
+                    </div>
+                    <div class="related-body">
+                        <h3>Ureki Sands Resort</h3>
+                        <p>პრემიუმ კლასის საკურორტო კომპლექსი ზღვის პირას</p>
+                        <span class="related-loc">ურეკი</span>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
