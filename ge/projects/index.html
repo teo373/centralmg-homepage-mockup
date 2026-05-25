@@ -1648,37 +1648,9 @@
         </div>
     </section>
 
-    <!-- ===== FILTERS BAR ===== -->
-    <section class="filters-bar">
-        <div class="filters-inner">
-            <div class="filter-group">
-                <span class="filter-label">ლოკაცია</span>
-                <div class="filter-chips">
-                    <button class="filter-chip active" data-filter="location" data-value="all">ყველა</button>
-                    <button class="filter-chip" data-filter="location" data-value="batumi">ბათუმი</button>
-                    <button class="filter-chip" data-filter="location" data-value="bakuriani">ბაკურიანი</button>
-                    <button class="filter-chip" data-filter="location" data-value="kobuleti">ქობულეთი</button>
-                    <button class="filter-chip" data-filter="location" data-value="tbilisi">თბილისი</button>
-                    <button class="filter-chip" data-filter="location" data-value="ureki">ურეკი</button>
-                </div>
-            </div>
-            <div class="filter-group">
-                <span class="filter-label">სტატუსი</span>
-                <div class="filter-chips">
-                    <button class="filter-chip active" data-filter="status" data-value="all">ყველა</button>
-                    <button class="filter-chip" data-filter="status" data-value="construction">მშენებარე</button>
-                    <button class="filter-chip" data-filter="status" data-value="ready">დასრულებული</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ===== PROJECTS ===== -->
     <section class="projects-listing" id="projects">
         <div class="projects-listing-inner">
-            <div class="projects-result-count">
-                <span id="project-count">6</span> პროექტი
-            </div>
             <div class="projects-list-grid">
                 <a href="../kvirike-residence/" class="project-card" data-location="kobuleti" data-status="ready">
                     <div class="project-img-wrap">
@@ -1764,9 +1736,6 @@
                         </div>
                     </div>
                 </a>
-            </div>
-            <div class="projects-empty" id="projects-empty" style="display:none;">
-                <p>ამ ფილტრით პროექტი არ მოიძებნა.</p>
             </div>
         </div>
     </section>
@@ -1856,47 +1825,6 @@
                 backToTop.classList.remove('visible');
             }
         });
-
-        // Project filtering
-        (function() {
-            var activeFilters = { location: 'all', status: 'all' };
-            var chips = document.querySelectorAll('.filter-chip');
-            var cards = document.querySelectorAll('.projects-list-grid .project-card');
-            var countEl = document.getElementById('project-count');
-            var emptyEl = document.getElementById('projects-empty');
-
-            function applyFilters() {
-                var visibleCount = 0;
-                cards.forEach(function(card) {
-                    var loc = card.getAttribute('data-location');
-                    var stat = card.getAttribute('data-status');
-                    var locMatch = activeFilters.location === 'all' || activeFilters.location === loc;
-                    var statMatch = activeFilters.status === 'all' || activeFilters.status === stat;
-                    if (locMatch && statMatch) {
-                        card.classList.remove('hidden');
-                        visibleCount++;
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                });
-                if (countEl) countEl.textContent = visibleCount;
-                if (emptyEl) emptyEl.style.display = visibleCount === 0 ? 'block' : 'none';
-            }
-
-            chips.forEach(function(chip) {
-                chip.addEventListener('click', function() {
-                    var filter = chip.getAttribute('data-filter');
-                    var value = chip.getAttribute('data-value');
-                    // toggle active in same group
-                    document.querySelectorAll('.filter-chip[data-filter="' + filter + '"]').forEach(function(c) {
-                        c.classList.remove('active');
-                    });
-                    chip.classList.add('active');
-                    activeFilters[filter] = value;
-                    applyFilters();
-                });
-            });
-        })();
     </script>
 
 </body>
