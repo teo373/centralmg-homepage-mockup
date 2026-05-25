@@ -1985,12 +1985,14 @@
         .apartment-card {
             background: var(--bg-white);
             border: 1px solid rgba(0,0,0,0.06);
-            padding: 36px 32px;
-            transition: transform 0.25s ease, box-shadow 0.3s ease, border-color 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
         .apartment-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 44px rgba(0,0,0,0.09);
             border-color: rgba(0,0,0,0.14);
         }
         .apartment-card.featured {
@@ -1998,17 +2000,72 @@
             color: var(--text-light);
             border-color: var(--text-dark);
         }
+
+        /* Visual area with floor plan */
+        .apartment-visual {
+            position: relative;
+            background: #f1efe9;
+            padding: 36px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+        .apartment-card.featured .apartment-visual {
+            background: #0a0a0a;
+            border-bottom-color: rgba(255,255,255,0.08);
+        }
+        .floor-plan {
+            width: 100%;
+            max-width: 220px;
+            height: auto;
+            color: rgba(0,0,0,0.55);
+            transition: transform 0.4s ease, color 0.3s ease;
+        }
+        .apartment-card.featured .floor-plan {
+            color: rgba(255,255,255,0.65);
+        }
+        .apartment-card:hover .floor-plan {
+            transform: scale(1.04);
+            color: var(--text-dark);
+        }
+        .apartment-card.featured:hover .floor-plan {
+            color: var(--text-light);
+        }
+        .apartment-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255,255,255,0.92);
+            color: var(--text-dark);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 6px 11px;
+            border-radius: 999px;
+        }
+
+        /* Body */
+        .apartment-body {
+            padding: 32px 30px 30px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
         .apartment-type {
             display: inline-block;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            padding: 6px 12px;
+            padding: 5px 11px;
             border: 1px solid rgba(0,0,0,0.18);
-            margin-bottom: 24px;
-            border-radius: 4px;
-            color: rgba(0,0,0,0.7);
+            margin-bottom: 20px;
+            border-radius: 3px;
+            color: rgba(0,0,0,0.65);
+            align-self: flex-start;
         }
         .apartment-card.featured .apartment-type {
             border-color: rgba(255,255,255,0.3);
@@ -2018,36 +2075,53 @@
             font-size: 22px;
             font-weight: 500;
             line-height: 1.25;
-            margin: 0 0 14px;
+            margin: 0 0 12px;
+            letter-spacing: -0.2px;
         }
-        .apartment-card > p {
+        .apartment-card .apartment-body > p {
             font-size: 14px;
             font-weight: 300;
             line-height: 1.65;
             color: rgba(0,0,0,0.6);
             margin: 0 0 28px;
         }
-        .apartment-card.featured > p { color: rgba(255,255,255,0.7); }
-        .apartment-meta {
-            padding-top: 20px;
-            border-top: 1px solid rgba(0,0,0,0.1);
+        .apartment-card.featured .apartment-body > p { color: rgba(255,255,255,0.7); }
+        .apartment-stats {
+            margin-top: auto;
+            padding-top: 22px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
         }
-        .apartment-card.featured .apartment-meta {
-            border-top-color: rgba(255,255,255,0.15);
+        .apartment-card.featured .apartment-stats {
+            border-top-color: rgba(255,255,255,0.12);
         }
-        .apartment-meta-row {
+        .apartment-stat {
             display: flex;
             justify-content: space-between;
-            font-size: 13px;
-            padding: 8px 0;
-            color: rgba(0,0,0,0.6);
+            align-items: baseline;
+            gap: 12px;
         }
-        .apartment-card.featured .apartment-meta-row { color: rgba(255,255,255,0.7); }
-        .apartment-meta-row strong {
-            color: var(--text-dark);
+        .apt-stat-label {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(0,0,0,0.5);
+        }
+        .apartment-card.featured .apt-stat-label { color: rgba(255,255,255,0.55); }
+        .apt-stat-value {
+            font-size: 15px;
             font-weight: 600;
+            color: var(--text-dark);
+            text-align: right;
         }
-        .apartment-card.featured .apartment-meta-row strong { color: var(--text-light); }
+        .apartment-card.featured .apt-stat-value { color: var(--text-light); }
+        .apartment-stat-price .apt-stat-value {
+            font-size: 18px;
+            letter-spacing: -0.3px;
+        }
 
         /* Amenities */
         .amenities-section {
@@ -2225,7 +2299,8 @@
             .project-stat-value { font-size: 18px; }
             .project-overview, .apartments-section, .amenities-section, .payment-section { padding: 64px 20px; }
             .amenities-grid { grid-template-columns: 1fr; }
-            .apartment-card { padding: 28px 24px; }
+            .apartment-visual { padding: 28px 24px; min-height: 150px; }
+            .apartment-body { padding: 26px 24px; }
             .payment-card { padding: 24px; flex-direction: column; align-items: flex-start; gap: 10px; }
             .payment-num { min-width: 0; font-size: 40px; }
             .filters-inner { gap: 16px 24px; }
@@ -2372,47 +2447,86 @@
             </div>
             <div class="apartments-grid">
                 <div class="apartment-card">
-                    <div class="apartment-type">სტუდიო</div>
-                    <h3>კომპაქტური და ფუნქციური</h3>
-                    <p>იდეალური საინვესტიციოდ — სწრაფი ანაზღაურება და მაღალი იჯარის შემოსავალი.</p>
-                    <div class="apartment-meta">
-                        <div class="apartment-meta-row">
-                            <span>ფართობი</span>
-                            <strong>30.3 m²-დან</strong>
-                        </div>
-                        <div class="apartment-meta-row">
-                            <span>ფასი</span>
-                            <strong>$40,300-დან</strong>
+                    <div class="apartment-visual">
+                        <svg class="floor-plan" viewBox="0 0 120 80" fill="none" aria-hidden="true">
+                            <rect x="6" y="6" width="108" height="68" stroke="currentColor" stroke-width="1.2"/>
+                            <line x1="82" y1="6" x2="82" y2="32" stroke="currentColor" stroke-width="1.2"/>
+                            <line x1="82" y1="32" x2="114" y2="32" stroke="currentColor" stroke-width="1.2"/>
+                            <text x="44" y="46" text-anchor="middle" font-size="6" fill="currentColor" opacity="0.5" font-family="inherit">საცხ.</text>
+                            <text x="98" y="22" text-anchor="middle" font-size="5" fill="currentColor" opacity="0.5" font-family="inherit">სველი</text>
+                        </svg>
+                    </div>
+                    <div class="apartment-body">
+                        <div class="apartment-type">სტუდიო</div>
+                        <h3>კომპაქტური და ფუნქციური</h3>
+                        <p>იდეალური საინვესტიციოდ — სწრაფი ანაზღაურება და მაღალი იჯარის შემოსავალი.</p>
+                        <div class="apartment-stats">
+                            <div class="apartment-stat">
+                                <span class="apt-stat-label">ფართობი</span>
+                                <span class="apt-stat-value">30.3 m²-დან</span>
+                            </div>
+                            <div class="apartment-stat apartment-stat-price">
+                                <span class="apt-stat-label">ფასი</span>
+                                <span class="apt-stat-value">$40,300-დან</span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="apartment-card featured">
-                    <div class="apartment-type">1-საძინებლიანი</div>
-                    <h3>კომფორტული საცხოვრებელი</h3>
-                    <p>ბალანსი ფართობსა და ფასს შორის — საცხოვრებლადაც და გასაქირავებლადაც.</p>
-                    <div class="apartment-meta">
-                        <div class="apartment-meta-row">
-                            <span>ფართობი</span>
-                            <strong>45-55 m²</strong>
-                        </div>
-                        <div class="apartment-meta-row">
-                            <span>ფასი</span>
-                            <strong>დაგვიკავშირდით</strong>
+                    <div class="apartment-visual">
+                        <svg class="floor-plan" viewBox="0 0 120 80" fill="none" aria-hidden="true">
+                            <rect x="6" y="6" width="108" height="68" stroke="currentColor" stroke-width="1.2"/>
+                            <line x1="58" y1="6" x2="58" y2="74" stroke="currentColor" stroke-width="1.2"/>
+                            <line x1="82" y1="6" x2="82" y2="32" stroke="currentColor" stroke-width="1.2"/>
+                            <line x1="82" y1="32" x2="114" y2="32" stroke="currentColor" stroke-width="1.2"/>
+                            <text x="32" y="46" text-anchor="middle" font-size="6" fill="currentColor" opacity="0.6" font-family="inherit">საცხ.</text>
+                            <text x="70" y="56" text-anchor="middle" font-size="6" fill="currentColor" opacity="0.6" font-family="inherit">საძ.</text>
+                            <text x="98" y="22" text-anchor="middle" font-size="5" fill="currentColor" opacity="0.6" font-family="inherit">სველი</text>
+                        </svg>
+                        <span class="apartment-badge">პოპულარული</span>
+                    </div>
+                    <div class="apartment-body">
+                        <div class="apartment-type">1-საძინებლიანი</div>
+                        <h3>კომფორტული საცხოვრებელი</h3>
+                        <p>ბალანსი ფართობსა და ფასს შორის — საცხოვრებლადაც და გასაქირავებლადაც.</p>
+                        <div class="apartment-stats">
+                            <div class="apartment-stat">
+                                <span class="apt-stat-label">ფართობი</span>
+                                <span class="apt-stat-value">45-55 m²</span>
+                            </div>
+                            <div class="apartment-stat apartment-stat-price">
+                                <span class="apt-stat-label">ფასი</span>
+                                <span class="apt-stat-value">დაგვიკავშირდით</span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="apartment-card">
-                    <div class="apartment-type">2-საძინებლიანი</div>
-                    <h3>ფართო ოჯახური სივრცე</h3>
-                    <p>ოჯახური დასვენებისთვის ან გრძელვადიანი იჯარისთვის ოპტიმალური ვარიანტი.</p>
-                    <div class="apartment-meta">
-                        <div class="apartment-meta-row">
-                            <span>ფართობი</span>
-                            <strong>70-90 m²</strong>
-                        </div>
-                        <div class="apartment-meta-row">
-                            <span>ფასი</span>
-                            <strong>დაგვიკავშირდით</strong>
+                    <div class="apartment-visual">
+                        <svg class="floor-plan" viewBox="0 0 120 80" fill="none" aria-hidden="true">
+                            <rect x="6" y="6" width="108" height="68" stroke="currentColor" stroke-width="1.2"/>
+                            <line x1="44" y1="6" x2="44" y2="74" stroke="currentColor" stroke-width="1.2"/>
+                            <line x1="78" y1="6" x2="78" y2="74" stroke="currentColor" stroke-width="1.2"/>
+                            <line x1="78" y1="40" x2="114" y2="40" stroke="currentColor" stroke-width="1.2"/>
+                            <text x="25" y="46" text-anchor="middle" font-size="6" fill="currentColor" opacity="0.5" font-family="inherit">საცხ.</text>
+                            <text x="61" y="46" text-anchor="middle" font-size="6" fill="currentColor" opacity="0.5" font-family="inherit">საძ. 1</text>
+                            <text x="96" y="26" text-anchor="middle" font-size="6" fill="currentColor" opacity="0.5" font-family="inherit">საძ. 2</text>
+                            <text x="96" y="58" text-anchor="middle" font-size="5" fill="currentColor" opacity="0.5" font-family="inherit">სველი</text>
+                        </svg>
+                    </div>
+                    <div class="apartment-body">
+                        <div class="apartment-type">2-საძინებლიანი</div>
+                        <h3>ფართო ოჯახური სივრცე</h3>
+                        <p>ოჯახური დასვენებისთვის ან გრძელვადიანი იჯარისთვის ოპტიმალური ვარიანტი.</p>
+                        <div class="apartment-stats">
+                            <div class="apartment-stat">
+                                <span class="apt-stat-label">ფართობი</span>
+                                <span class="apt-stat-value">70-90 m²</span>
+                            </div>
+                            <div class="apartment-stat apartment-stat-price">
+                                <span class="apt-stat-label">ფასი</span>
+                                <span class="apt-stat-value">დაგვიკავშირდით</span>
+                            </div>
                         </div>
                     </div>
                 </div>
