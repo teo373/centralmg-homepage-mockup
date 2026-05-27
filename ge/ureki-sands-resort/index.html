@@ -2133,9 +2133,9 @@
 
         /* Apartment Gallery (tabbed) */
         .apartment-gallery {
-            background: #161616;
+            background: var(--bg-white);
             padding: 100px 24px;
-            color: var(--text-light);
+            color: var(--text-dark);
         }
         .apartment-gallery-inner {
             max-width: 1200px;
@@ -2148,25 +2148,25 @@
             margin-left: auto;
             margin-right: auto;
         }
-        .ag-header .section-eyebrow { color: rgba(255,255,255,0.5); }
+        .ag-header .section-eyebrow { color: rgba(0,0,0,0.45); }
         .ag-header h2 {
             font-size: clamp(26px, 3.2vw, 38px);
             font-weight: 300;
             line-height: 1.2;
-            color: var(--text-light);
+            color: var(--text-dark);
             margin: 0;
             letter-spacing: -0.3px;
         }
         .ag-tabs {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            border-bottom: 1px solid rgba(255,255,255,0.15);
+            border-bottom: 1px solid rgba(0,0,0,0.15);
             margin-bottom: 48px;
         }
         .ag-tab {
             background: transparent;
             border: none;
-            color: rgba(255,255,255,0.55);
+            color: rgba(0,0,0,0.5);
             font-family: inherit;
             font-size: 15px;
             font-weight: 500;
@@ -2177,10 +2177,10 @@
             margin-bottom: -1px;
             letter-spacing: 0.2px;
         }
-        .ag-tab:hover { color: rgba(255,255,255,0.85); }
+        .ag-tab:hover { color: rgba(0,0,0,0.8); }
         .ag-tab.active {
-            color: var(--text-light);
-            border-bottom-color: var(--text-light);
+            color: var(--text-dark);
+            border-bottom-color: var(--text-dark);
             font-weight: 600;
         }
         .ag-panels { position: relative; }
@@ -2197,8 +2197,8 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .ag-visual {
-            background: #0a0a0a;
-            border: 1px solid rgba(255,255,255,0.06);
+            background: #f1efe9;
+            border: 1px solid rgba(0,0,0,0.06);
             padding: 60px 40px;
             min-height: 380px;
             display: flex;
@@ -2209,7 +2209,7 @@
             width: 100%;
             max-width: 480px;
             height: auto;
-            color: rgba(255,255,255,0.7);
+            color: rgba(0,0,0,0.55);
         }
         .ag-info {
             display: flex;
@@ -2221,20 +2221,20 @@
             justify-content: space-between;
             align-items: baseline;
             padding: 20px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
         }
         .ag-info-row:first-child { padding-top: 0; }
         .ag-info-label {
             font-size: 12px;
             font-weight: 500;
-            color: rgba(255,255,255,0.55);
+            color: rgba(0,0,0,0.5);
             letter-spacing: 1px;
             text-transform: uppercase;
         }
         .ag-info-value {
             font-size: 17px;
             font-weight: 600;
-            color: var(--text-light);
+            color: var(--text-dark);
             text-align: right;
         }
         .ag-info-price { font-size: 22px; letter-spacing: -0.3px; }
@@ -2244,22 +2244,22 @@
             align-items: center;
             justify-content: center;
             padding: 16px 32px;
-            border: 1px solid rgba(255,255,255,0.4);
-            background: rgba(15,15,15,0.55);
-            color: var(--text-light);
+            border: 1px solid rgba(0,0,0,0.25);
+            background: transparent;
+            color: var(--text-dark);
             text-decoration: none;
             font-size: 14px;
-            font-weight: 400;
+            font-weight: 500;
             letter-spacing: 0.4px;
             border-radius: 999px;
-            transition: background 0.25s ease, border-color 0.25s ease;
+            transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
             align-self: flex-start;
         }
         .ag-cta:hover {
-            background: rgba(15,15,15,0.85);
-            border-color: rgba(255,255,255,0.7);
+            background: var(--text-dark);
+            color: var(--text-light);
+            border-color: var(--text-dark);
         }
-
         /* Location */
         .location-section {
             background: var(--bg-white);
@@ -2320,6 +2320,18 @@
             transition: opacity 0.25s ease;
         }
         .location-link:hover { opacity: 0.6; }
+        .overview-map-link {
+            display: inline-block;
+            margin-top: 28px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 1px solid currentColor;
+            padding-bottom: 2px;
+            transition: opacity 0.25s ease;
+        }
+        .overview-map-link:hover { opacity: 0.6; }
         .location-map {
             position: relative;
             overflow: hidden;
@@ -2734,9 +2746,9 @@
             .apartment-body { padding: 26px 24px; }
             .apartment-gallery { padding: 64px 20px; }
             .ag-tabs { grid-template-columns: 1fr; border-bottom: none; }
-            .ag-tab { border: 1px solid rgba(255,255,255,0.15); border-bottom: none; padding: 14px; font-size: 14px; }
-            .ag-tab:last-child { border-bottom: 1px solid rgba(255,255,255,0.15); }
-            .ag-tab.active { background: rgba(255,255,255,0.06); border-bottom-color: rgba(255,255,255,0.15); }
+            .ag-tab { border: 1px solid rgba(0,0,0,0.12); border-bottom: none; padding: 14px; font-size: 14px; }
+            .ag-tab:last-child { border-bottom: 1px solid rgba(0,0,0,0.12); }
+            .ag-tab.active { background: rgba(0,0,0,0.04); border-bottom-color: rgba(0,0,0,0.12); }
             .ag-panel.active { grid-template-columns: 1fr; gap: 28px; }
             .ag-visual { padding: 40px 24px; min-height: 240px; }
             .ag-info-value { font-size: 15px; }
@@ -2863,9 +2875,90 @@
                     <li>ველნეს-კონცეფცია</li>
                     <li>შავი ზღვის სანაპიროზე</li>
                 </ul>
+                <a href="https://maps.google.com/?q=Ureki+Sands+Resort" target="_blank" rel="noopener" class="overview-map-link">რუკაზე ნახვა &rarr;</a>
             </div>
             <div class="overview-image">
                 <img src="https://static.tildacdn.one/tild6535-6637-4631-a165-666263356361/2_7.png" alt="Ureki Sands Resort გარე ხედი" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== INFRASTRUCTURE / AMENITIES ===== -->
+    <section class="infra-section">
+        <div class="infra-inner">
+            <div class="infra-header">
+                <p class="section-eyebrow">ინფრასტრუქტურა</p>
+                <h2>ყველაფერი, რაც სრულფასოვან ცხოვრებას და დასვენებას სჭირდება</h2>
+            </div>
+            <div class="infra-body">
+                <div class="infra-list">
+                    <p class="infra-subhead">კომპლექსის ტერიტორიაზე:</p>
+                    <div class="infra-grid">
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 8h12v4a4 4 0 01-4 4H8a4 4 0 01-4-4V8z"/><path d="M16 9h2a2 2 0 110 4h-2"/><path d="M6 4v2M10 4v2M14 4v2"/></svg>
+                            </span>
+                            <span>კაფე და რესტორანი</span>
+                        </div>
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 16c2-1 3 1 5 1s3-2 5-2 3 2 5 2 3-1 5-1"/><path d="M2 20c2-1 3 1 5 1s3-2 5-2 3 2 5 2 3-1 5-1"/><circle cx="14" cy="7" r="2"/><path d="M14 9v6"/></svg>
+                            </span>
+                            <span>აუზები</span>
+                        </div>
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
+                            </span>
+                            <span>ქვიშის სპა</span>
+                        </div>
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="16" height="12"/><line x1="4" y1="12" x2="20" y2="12"/></svg>
+                            </span>
+                            <span>პადელ-კორტები</span>
+                        </div>
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="6" r="2"/><path d="M12 8v6"/><path d="M8 14h8"/><path d="M9 22l3-8 3 8"/></svg>
+                            </span>
+                            <span>იოგას სივრცე</span>
+                        </div>
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="6" x2="6" y2="18"/><line x1="18" y1="6" x2="18" y2="18"/><line x1="3" y1="9" x2="3" y2="15"/><line x1="21" y1="9" x2="21" y2="15"/><line x1="6" y1="12" x2="18" y2="12"/></svg>
+                            </span>
+                            <span>ფიტნეს ცენტრი</span>
+                        </div>
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="9" r="3"/><path d="M8 14l-2 8 6-3 6 3-2-8"/></svg>
+                            </span>
+                            <span>საბავშვო თამაშების სივრცე</span>
+                        </div>
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 18c4-2 7-2 9-2s5 0 9 2"/><path d="M5 14c3-1 5-1 7-1s4 0 7 1"/><circle cx="12" cy="6" r="3"/></svg>
+                            </span>
+                            <span>კერძო პლაჟი</span>
+                        </div>
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V8h7l2 3h7v9H4z"/><path d="M8 14h8"/></svg>
+                            </span>
+                            <span>ლაუნჯი</span>
+                        </div>
+                        <div class="infra-item">
+                            <span class="infra-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                            </span>
+                            <span>24/7 რეცეპცია</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="infra-image">
+                    <img src="https://static.tildacdn.one/tild6535-6637-4631-a165-666263356361/2_7.png" alt="Ureki Sands Resort — საერთო ხედი" loading="lazy">
+                </div>
             </div>
         </div>
     </section>
@@ -2976,106 +3069,26 @@
         </div>
     </section>
 
-    <!-- ===== LOCATION ===== -->
-    <section class="location-section">
-        <div class="location-inner">
-            <div class="location-text">
-                <p class="section-eyebrow">ლოკაცია</p>
-                <h2>სრულფასოვანი ცხოვრება. გონივრული ინვესტიცია.</h2>
-                <p>Ureki Sands Resort მდებარეობს გურიის რეგიონში, ურეკის უნიკალურ მაგნიტურ ქვიშის სანაპიროზე. ეს ლოკაცია ცნობილია სამედიცინო ტურიზმის ცენტრად, რომელიც მთელი წლის განმავლობაში სარგებლობს მაღალი მოთხოვნით.</p>
-                <ul class="location-facts">
-                    <li><span>ლოკაცია</span><strong>ურეკი, გურია</strong></li>
-                    <li><span>ბათუმამდე</span><strong>~50 წუთის სავალი</strong></li>
-                    <li><span>პლაჟამდე</span><strong>კერძო წვდომა</strong></li>
-                    <li><span>აეროპორტამდე</span><strong>~1 საათი</strong></li>
-                </ul>
-                <a href="https://maps.google.com/?q=Ureki+Beach+Georgia" target="_blank" rel="noopener" class="location-link">რუკაზე ნახვა &rarr;</a>
+    <!-- ===== PAYMENT TERMS ===== -->
+    <section class="payment-section">
+        <div class="payment-inner">
+            <div class="payment-text">
+                <p class="section-eyebrow">გადახდის პირობები</p>
+                <h2>მოქნილი გადახდის გრაფიკი თქვენი მიზნებისთვის</h2>
+                <p>CMG სთავაზობს გადახდის გამარტივებულ მოდელს — მცირე საწყისი შენატანი და სრულად უპროცენტო შიდა განვადება.</p>
             </div>
-            <div class="location-map">
-                <img src="https://static.tildacdn.one/tild6535-6637-4631-a165-666263356361/2_7.png" alt="Ureki Sands Resort — ლოკაცია ქობულეთში" loading="lazy">
-                <div class="location-pin">
-                    <span class="location-pin-dot"></span>
-                    <span class="location-pin-label">Ureki Sands Resort</span>
+            <div class="payment-cards">
+                <div class="payment-card">
+                    <div class="payment-num">10<span class="payment-unit">%</span></div>
+                    <div class="payment-label">საწყისი შენატანი</div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== INFRASTRUCTURE / AMENITIES ===== -->
-    <section class="infra-section">
-        <div class="infra-inner">
-            <div class="infra-header">
-                <p class="section-eyebrow">ინფრასტრუქტურა</p>
-                <h2>ყველაფერი, რაც სრულფასოვან ცხოვრებას და დასვენებას სჭირდება</h2>
-            </div>
-            <div class="infra-body">
-                <div class="infra-list">
-                    <p class="infra-subhead">კომპლექსის ტერიტორიაზე:</p>
-                    <div class="infra-grid">
-                        <div class="infra-item">
-                            <span class="infra-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 8h12v4a4 4 0 01-4 4H8a4 4 0 01-4-4V8z"/><path d="M16 9h2a2 2 0 110 4h-2"/><path d="M6 4v2M10 4v2M14 4v2"/></svg>
-                            </span>
-                            <span>კაფე და რესტორანი</span>
-                        </div>
-                        <div class="infra-item">
-                            <span class="infra-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 16c2-1 3 1 5 1s3-2 5-2 3 2 5 2 3-1 5-1"/><path d="M2 20c2-1 3 1 5 1s3-2 5-2 3 2 5 2 3-1 5-1"/><circle cx="14" cy="7" r="2"/><path d="M14 9v6"/></svg>
-                            </span>
-                            <span>აუზები</span>
-                        </div>
-                        <div class="infra-item">
-                            <span class="infra-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
-                            </span>
-                            <span>ქვიშის სპა</span>
-                        </div>
-                        <div class="infra-item">
-                            <span class="infra-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="16" height="12"/><line x1="4" y1="12" x2="20" y2="12"/></svg>
-                            </span>
-                            <span>პადელ-კორტები</span>
-                        </div>
-                        <div class="infra-item">
-                            <span class="infra-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="6" r="2"/><path d="M12 8v6"/><path d="M8 14h8"/><path d="M9 22l3-8 3 8"/></svg>
-                            </span>
-                            <span>იოგას სივრცე</span>
-                        </div>
-                        <div class="infra-item">
-                            <span class="infra-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="6" x2="6" y2="18"/><line x1="18" y1="6" x2="18" y2="18"/><line x1="3" y1="9" x2="3" y2="15"/><line x1="21" y1="9" x2="21" y2="15"/><line x1="6" y1="12" x2="18" y2="12"/></svg>
-                            </span>
-                            <span>ფიტნეს ცენტრი</span>
-                        </div>
-                        <div class="infra-item">
-                            <span class="infra-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="9" r="3"/><path d="M8 14l-2 8 6-3 6 3-2-8"/></svg>
-                            </span>
-                            <span>საბავშვო თამაშების სივრცე</span>
-                        </div>
-                        <div class="infra-item">
-                            <span class="infra-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 18c4-2 7-2 9-2s5 0 9 2"/><path d="M5 14c3-1 5-1 7-1s4 0 7 1"/><circle cx="12" cy="6" r="3"/></svg>
-                            </span>
-                            <span>კერძო პლაჟი</span>
-                        </div>
-                        <div class="infra-item">
-                            <span class="infra-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V8h7l2 3h7v9H4z"/><path d="M8 14h8"/></svg>
-                            </span>
-                            <span>ლაუნჯი</span>
-                        </div>
-                        <div class="infra-item">
-                            <span class="infra-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-                            </span>
-                            <span>24/7 რეცეპცია</span>
-                        </div>
-                    </div>
+                <div class="payment-card">
+                    <div class="payment-num">36<span class="payment-unit"> თვე</span></div>
+                    <div class="payment-label">უპროცენტო შიდა განვადება</div>
                 </div>
-                <div class="infra-image">
-                    <img src="https://static.tildacdn.one/tild6535-6637-4631-a165-666263356361/2_7.png" alt="Ureki Sands Resort — საერთო ხედი" loading="lazy">
+                <div class="payment-card">
+                    <div class="payment-num">0<span class="payment-unit">%</span></div>
+                    <div class="payment-label">საპროცენტო განაკვეთი</div>
                 </div>
             </div>
         </div>
@@ -3114,27 +3127,14 @@
         </div>
     </section>
 
-    <!-- ===== PAYMENT TERMS ===== -->
-    <section class="payment-section">
-        <div class="payment-inner">
-            <div class="payment-text">
-                <p class="section-eyebrow">გადახდის პირობები</p>
-                <h2>მოქნილი გადახდის გრაფიკი თქვენი მიზნებისთვის</h2>
-                <p>CMG სთავაზობს გადახდის გამარტივებულ მოდელს — მცირე საწყისი შენატანი და სრულად უპროცენტო შიდა განვადება.</p>
-            </div>
-            <div class="payment-cards">
-                <div class="payment-card">
-                    <div class="payment-num">10<span class="payment-unit">%</span></div>
-                    <div class="payment-label">საწყისი შენატანი</div>
-                </div>
-                <div class="payment-card">
-                    <div class="payment-num">36<span class="payment-unit"> თვე</span></div>
-                    <div class="payment-label">უპროცენტო შიდა განვადება</div>
-                </div>
-                <div class="payment-card">
-                    <div class="payment-num">0<span class="payment-unit">%</span></div>
-                    <div class="payment-label">საპროცენტო განაკვეთი</div>
-                </div>
+    <!-- ===== BOTTOM CTA ===== -->
+    <section class="bottom-cta">
+        <div class="bottom-cta-inner">
+            <h2>დაინტერესდით Ureki Sands Resort-ით?</h2>
+            <p>დაგვიკავშირდით უფასო კონსულტაციისთვის — ჩვენი ექსპერტი დაგეხმარებათ ოპტიმალური აპარტამენტის შერჩევაში თქვენი ბიუჯეტისა და მიზნების შესაბამისად.</p>
+            <div class="bottom-cta-actions">
+                <a href="../../#contact" class="btn-gold">მოითხოვე კონსულტაცია</a>
+                <a href="tel:+995422222222" class="btn-secondary">დარეკე — 0422 22 22 22</a>
             </div>
         </div>
     </section>
@@ -3187,18 +3187,6 @@
                         <span class="related-loc">ქობულეთი</span>
                     </div>
                 </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== BOTTOM CTA ===== -->
-    <section class="bottom-cta">
-        <div class="bottom-cta-inner">
-            <h2>დაინტერესდით Ureki Sands Resort-ით?</h2>
-            <p>დაგვიკავშირდით უფასო კონსულტაციისთვის — ჩვენი ექსპერტი დაგეხმარებათ ოპტიმალური აპარტამენტის შერჩევაში თქვენი ბიუჯეტისა და მიზნების შესაბამისად.</p>
-            <div class="bottom-cta-actions">
-                <a href="../../#contact" class="btn-gold">მოითხოვე კონსულტაცია</a>
-                <a href="tel:+995422222222" class="btn-secondary">დარეკე — 0422 22 22 22</a>
             </div>
         </div>
     </section>
